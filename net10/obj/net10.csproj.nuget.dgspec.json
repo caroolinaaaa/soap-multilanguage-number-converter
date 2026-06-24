@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[2.3.1, )"
             },
+            "Humanizer.Core.es": {
+              "target": "Package",
+              "version": "[3.0.10, )"
+            },
             "System.ServiceModel.Duplex": {
               "target": "Package",
               "version": "[4.10.*, )"

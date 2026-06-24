@@ -1,34 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
-using ServiceReference;
-using GTranslate.Translators; // Cargamos la librería de traducción
+using Humanizer; // Cargamos la librería Humanizer
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", async (HttpContext context, [FromQuery] string? n) =>
+app.MapGet("/", (HttpContext context, [FromQuery] string? n) =>
 {
-    if (string.IsNullOrEmpty(n) || !ulong.TryParse(n, out ulong number))
+    // Validamos que el parámetro exista y sea un número entero
+    if (string.IsNullOrEmpty(n) || !long.TryParse(n, out long number))
     {
         return "Por favor, proporciona un número válido en la URL. Ejemplo: http://localhost:5000/?n=10";
     }
 
     try
     {
-        // 1. Consumir el servicio SOAP
-        var client = new NumberConversionSoapTypeClient(NumberConversionSoapTypeClient.EndpointConfiguration.NumberConversionSoap);
-        var response = await client.NumberToWordsAsync(number);
-        string resultadoIngles = response.Body.NumberToWordsResult.Trim();
+        // Forzamos la cultura a español para que Humanizer convierta al idioma correcto
+        var culturaEspanol = new CultureInfo("es");
+        
+        // Convertimos el número a letras usando la extensión .ToWords()
+        string resultadoLetras = number.ToWords(culturaEspanol);
 
-        // 2. Traducir el resultado de Inglés a Español
-        var translator = new AggregateTranslator();
-        var translation = await translator.TranslateAsync(resultadoIngles, "es", "en");
-
-        // Retornamos el resultado traducido
-        return translation.Translation.ToLower();
+        // Retornamos el resultado en minúsculas
+        return resultadoLetras.ToLower();
     }
     catch (Exception ex)
     {
-        return $"Error en el proceso: {ex.Message}";
+        return $"Error en la conversión: {ex.Message}";
     }
 });
 

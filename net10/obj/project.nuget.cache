@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9S2OofySOcM=",
+  "dgSpecHash": "uv58DiCRt+Q=",
   "success": true,
   "projectFilePath": "C:\\GitHub\\soap-multilanguage-number-converter\\net10\\net10.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bonil\\.nuget\\packages\\gtranslate\\2.3.1\\gtranslate.2.3.1.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\humanizer.core\\3.0.10\\humanizer.core.3.0.10.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\humanizer.core.es\\3.0.10\\humanizer.core.es.3.0.10.nupkg.sha512",
     "C:\\Users\\bonil\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",
     "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.protocols.wstrust\\6.8.0\\microsoft.identitymodel.protocols.wstrust.6.8.0.nupkg.sha512",
