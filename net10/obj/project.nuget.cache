@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "h5NOIE7dymg=",
+  "success": true,
+  "projectFilePath": "C:\\GitHub\\soap-multilanguage-number-converter\\net10\\net10.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bonil\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.protocols.wstrust\\6.8.0\\microsoft.identitymodel.protocols.wstrust.6.8.0.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.tokens.saml\\6.8.0\\microsoft.identitymodel.tokens.saml.6.8.0.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\microsoft.identitymodel.xml\\6.8.0\\microsoft.identitymodel.xml.6.8.0.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.private.servicemodel\\4.10.3\\system.private.servicemodel.4.10.3.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.servicemodel.duplex\\4.10.3\\system.servicemodel.duplex.4.10.3.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.servicemodel.federation\\4.10.3\\system.servicemodel.federation.4.10.3.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.servicemodel.http\\4.10.3\\system.servicemodel.http.4.10.3.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.servicemodel.nettcp\\4.10.3\\system.servicemodel.nettcp.4.10.3.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.servicemodel.primitives\\4.10.3\\system.servicemodel.primitives.4.10.3.nupkg.sha512",
+    "C:\\Users\\bonil\\.nuget\\packages\\system.servicemodel.security\\4.10.3\\system.servicemodel.security.4.10.3.nupkg.sha512"
+  ],
+  "logs": []
+}
