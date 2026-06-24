@@ -70,3 +70,4 @@ C:\GitHub\soap-multilanguage-number-converter\net10\bin\Debug\net10.0\zh-Hans\Sy
 C:\GitHub\soap-multilanguage-number-converter\net10\bin\Debug\net10.0\zh-Hant\System.ServiceModel.Federation.resources.dll
 C:\GitHub\soap-multilanguage-number-converter\net10\obj\Debug\net10.0\net10.csproj.AssemblyReference.cache
 C:\GitHub\soap-multilanguage-number-converter\net10\obj\Debug\net10.0\net10.csproj.Up2Date
+C:\GitHub\soap-multilanguage-number-converter\net10\bin\Debug\net10.0\GTranslate.dll
