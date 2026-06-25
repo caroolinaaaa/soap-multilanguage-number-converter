@@ -1,7 +1,9 @@
 require 'sinatra'
 require 'savon'
+require 'net/http'
+require 'json'
+require 'uri'
 
-# Configurar el puerto 5000 como en los otros lenguajes
 set :port, 5000
 
 get '/' do
@@ -12,17 +14,21 @@ get '/' do
   end
 
   begin
-    # Configurar el cliente SOAP con el WSDL de DataAccess
+    # 1. Consumir el servicio SOAP
     client = Savon.client(wsdl: "https://www.dataaccess.com/webservicesserver/NumberConversion.wso?WSDL")
-    
-    # Hacer la llamada al método NumberToWords
     response = client.call(:number_to_words, message: { ubiNum: numero })
+    resultado_ingles = response.body[:number_to_words_response][:number_to_words_result].to_s.strip
+
+    # 2. Traducir usando la API de MyMemory de Inglés a Español
+    url_texto = URI.encode_www_form_component(resultado_ingles)
+    uri = URI("https://api.mymemory.translated.net/get?q=#{url_texto}&langpair=en|es")
     
-    # Obtener el resultado del cuerpo de la respuesta
-    resultado = response.body[:number_to_words_response][:number_to_words_result]
+    res = Net::HTTP.get(uri)
+    datos = JSON.parse(res)
+    resultado_espanol = datos["responseData"]["translatedText"]
     
-    resultado.to_s.strip.downcase
+    resultado_espanol.downcase
   rescue => e
-    "Error al conectar con el servicio SOAP: #{e.message}"
+    "Error en el proceso: #{e.message}"
   end
 end
