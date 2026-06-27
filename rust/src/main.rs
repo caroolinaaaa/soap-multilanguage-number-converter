@@ -6,82 +6,69 @@ struct QueryParams {
     n: Option<String>,
 }
 
-// Estructuras para deserializar la respuesta JSON de la API de traducción
-#[derive(Deserialize)]
-struct TranslationResponse {
-    #[serde(rename = "responseData")]
-    response_data: ResponseData,
-}
+// Función nativa local y limpia para convertir números a letras en español
+fn numero_a_letras(mut n: i64) -> String {
+    if n == 0 {
+        return "cero".to_string();
+    }
 
-#[derive(Deserialize)]
-struct ResponseData {
-    #[serde(rename = "translatedText")]
-    translated_text: String,
+    let unidades = ["", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"];
+    let decenas = ["", "diez", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"];
+    let especiales = ["diez", "once", "doce", "trece", "catorce", "quince", "dieciseis", "diecisiete", "dieciocho", "diecinueve"];
+    let veintes = ["veinte", "veintiuno", "veintidos", "veintitres", "veinticuatro", "veinticinco", "veintiseis", "veintisiete", "veintiocho", "veintinueve"];
+    let centenas = ["", "cien", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos"];
+
+    let mut resultado = Vec::new();
+
+    // Centenas
+    if n >= 100 {
+        let c = (n / 100) as usize;
+        if c == 1 && n % 100 != 0 {
+            resultado.push("ciento".to_string());
+        } else {
+            resultado.push(centenas[c].to_string());
+        }
+        n %= 100;
+    }
+
+    // Decenas y Unidades
+    if n >= 10 && n < 20 {
+        resultado.push(especiales[(n - 10) as usize].to_string());
+    } else if n >= 20 && n < 30 {
+        resultado.push(veintes[(n - 20) as usize].to_string());
+    } else if n >= 30 {
+        let d = (n / 10) as usize;
+        let u = (n % 10) as usize;
+        if u > 0 {
+            resultado.push(format!("{} y {}", decenas[d], unidades[u]));
+        } else {
+            resultado.push(decenas[d].to_string());
+        }
+    } else if n > 0 {
+        resultado.push(unidades[n as usize].to_string());
+    }
+
+    resultado.join(" ")
 }
 
 async fn index(query: web::Query<QueryParams>) -> impl Responder {
-    let numero = match &query.n {
+    let numero_str = match &query.n {
         Some(val) => val,
         None => return HttpResponse::Ok().body("Por favor, proporciona un numero valido en la URL. Ejemplo: http://localhost:5000/?n=10"),
     };
 
-    // 1. Petición SOAP para obtener el número en inglés
-    let soap_envelope = format!(
-        r#"<?xml version="1.0" encoding="utf-8"?>
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-          <soap:Body>
-            <NumberToWords xmlns="http://www.dataaccess.com/webservicesserver/">
-              <ubiNum>{}</ubiNum>
-            </NumberToWords>
-          </soap:Body>
-        </soap:Envelope>"#,
-        numero
-    );
+    let numero: i64 = match numero_str.parse() {
+        Ok(num) => num,
+        Err(_) => return HttpResponse::Ok().body("Por favor, ingresa un numero entero valido."),
+    };
 
-    let client = reqwest::Client::new();
-    let res = client.post("https://www.dataaccess.com/webservicesserver/NumberConversion.wso")
-        .header("Content-Type", "text/xml; charset=utf-8")
-        .body(soap_envelope)
-        .send()
-        .await;
-
-    let mut resultado_ingles = String::new();
-
-    match res {
-        Ok(response) => {
-            if let Ok(body_text) = response.text().await {
-                if let Some(start_idx) = body_text.find("NumberToWordsResult>") {
-                    let cut_start = &body_text[start_idx + 20..];
-                    if let Some(end_idx) = cut_start.find("</") {
-                        resultado_ingles = cut_start[..end_idx].trim().to_string();
-                    }
-                }
-            }
-        },
-        Err(e) => return HttpResponse::InternalServerError().body(format!("Error SOAP: {}", e)),
+    // Restringimos el rango para el ejemplo rápido local
+    if numero < 0 || numero > 999 {
+        return HttpResponse::Ok().body("Por favor, ingresa un numero entre 0 y 999.");
     }
 
-    if resultado_ingles.is_empty() {
-        return HttpResponse::Ok().body("No se pudo obtener o parsear el resultado en ingles.");
-    }
-
-    // 2. Petición HTTP a la API de MyMemory para traducir de Inglés a Español
-    let api_url = format!(
-        "https://api.mymemory.translated.net/get?q={}&langpair=en|es",
-        resultado_ingles
-    );
-
-    match client.get(&api_url).send().await {
-        Ok(response) => {
-            if let Ok(json_resp) = response.json::<TranslationResponse>().await {
-                let resultado_espanol = json_resp.response_data.translated_text.trim().to_lowercase();
-                HttpResponse::Ok().body(resultado_espanol)
-            } else {
-                HttpResponse::InternalServerError().body("Error al procesar el JSON de la traduccion.")
-            }
-        },
-        Err(e) => HttpResponse::InternalServerError().body(format!("Error en el servicio de traduccion: {}", e)),
-    }
+    let resultado = numero_a_letras(numero);
+    HttpResponse::Ok().body(resultado)
 }
 
 #[actix_web::main]
