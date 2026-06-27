@@ -1,0 +1,14 @@
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\deps\serde-3d7c07d636225c4e.d: C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\build\serde-38142dd3d0018dab\out/private.rs
+
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\deps\libserde-3d7c07d636225c4e.rlib: C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\build\serde-38142dd3d0018dab\out/private.rs
+
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\deps\libserde-3d7c07d636225c4e.rmeta: C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\build\serde-38142dd3d0018dab\out/private.rs
+
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\build\serde-38142dd3d0018dab\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\GitHub\\soap-multilanguage-number-converter\\rust\\target\\debug\\build\\serde-38142dd3d0018dab\\out

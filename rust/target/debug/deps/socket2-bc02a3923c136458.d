@@ -1,0 +1,11 @@
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\deps\socket2-bc02a3923c136458.d: C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\lib.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockaddr.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\socket.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockref.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sys\windows.rs
+
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\deps\libsocket2-bc02a3923c136458.rlib: C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\lib.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockaddr.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\socket.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockref.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sys\windows.rs
+
+C:\GitHub\soap-multilanguage-number-converter\rust\target\debug\deps\libsocket2-bc02a3923c136458.rmeta: C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\lib.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockaddr.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\socket.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockref.rs C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sys\windows.rs
+
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\lib.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockaddr.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\socket.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sockref.rs:
+C:\Users\bonil\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\socket2-0.6.4\src\sys\windows.rs:
