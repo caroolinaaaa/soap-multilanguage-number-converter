@@ -2,14 +2,16 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Estructuras para mapear la respuesta XML del servicio SOAP
+// Estructuras para el XML de SOAP
 type SoapResponse struct {
 	XMLName xml.Name `xml:"Envelope"`
 	Body    SoapBody `xml:"Body"`
@@ -23,6 +25,13 @@ type NumberToWordsResponse struct {
 	NumberToWordsResult string `xml:"NumberToWordsResult"`
 }
 
+// Estructura para el JSON de MyMemory API
+type TranslationResponse struct {
+	ResponseData struct {
+		TranslatedText string `json:"translatedText"`
+	} `json:"responseData"`
+}
+
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		numero := r.URL.Query().Get("n")
@@ -31,7 +40,7 @@ func main() {
 			return
 		}
 
-		// Crear el cuerpo XML para la peticion SOAP
+		// 1. Petición SOAP (Inglés)
 		soapEnvelope := fmt.Sprintf(`<?xml version="1.0" encoding="utf-8"?>
 		<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 		  <soap:Body>
@@ -41,10 +50,9 @@ func main() {
 		  </soap:Body>
 		</soap:Envelope>`, numero)
 
-		// Hacer la peticion HTTP POST al servicio SOAP
 		req, err := http.NewRequest("POST", "https://www.dataaccess.com/webservicesserver/NumberConversion.wso", bytes.NewBufferString(soapEnvelope))
 		if err != nil {
-			http.Error(w, "Error al crear la peticion: "+err.Error(), http.StatusInternalServerError)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 		req.Header.Set("Content-Type", "text/xml; charset=utf-8")
@@ -52,23 +60,31 @@ func main() {
 		client := &http.Client{}
 		resp, err := client.Do(req)
 		if err != nil {
-			http.Error(w, "Error al conectar con SOAP: "+err.Error(), http.StatusInternalServerError)
+			http.Error(w, "Error SOAP: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 		defer resp.Body.Close()
 
 		bodyBytes, _ := io.ReadAll(resp.Body)
-
-		// Parsear el XML recibido
 		var soapResp SoapResponse
-		err = xml.Unmarshal(bodyBytes, &soapResp)
+		xml.Unmarshal(bodyBytes, &soapResp)
+		resultadoIngles := strings.TrimSpace(soapResp.Body.NumberToWordsResponse.NumberToWordsResult)
+
+		// 2. Traducción a Español vía API HTTP NATIVA
+		apiURL := fmt.Sprintf("https://api.mymemory.translated.net/get?q=%s&langpair=en|es", url.QueryEscape(resultadoIngles))
+		tradResp, err := http.Get(apiURL)
 		if err != nil {
-			http.Error(w, "Error al procesar XML: "+err.Error(), http.StatusInternalServerError)
+			http.Error(w, "Error Traduccion: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
+		defer tradResp.Body.Close()
 
-		resultado := strings.ToLower(strings.TrimSpace(soapResp.Body.NumberToWordsResponse.NumberToWordsResult))
-		fmt.Fprint(w, resultado)
+		tradBytes, _ := io.ReadAll(tradResp.Body)
+		var jsonResp TranslationResponse
+		json.Unmarshal(tradBytes, &jsonResp)
+
+		resultadoEspanol := strings.ToLower(strings.TrimSpace(jsonResp.ResponseData.TranslatedText))
+		fmt.Fprint(w, resultadoEspanol)
 	})
 
 	fmt.Println("Servidor corriendo en http://localhost:5000")
